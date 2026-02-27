@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BizBase Robotics • Nebraska</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .hero-bg { 
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%); 
+      position: relative; 
+      overflow: hidden; 
+    }
+    canvas#bg-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      opacity: 0.15;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .content { position: relative; z-index: 2; }
+    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+    .accordion-content.open { max-height: 400px; }
+  </style>
+</head>
+<body class="bg-zinc-950 text-zinc-200">
+
+  <!-- NAV -->
+  <nav class="border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-lg fixed w-full z-50">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl font-bold text-emerald-400">BizBase</span>
+        <span class="text-zinc-500 text-sm">Robotics Initiative</span>
+      </div>
+      <div class="flex gap-8 text-sm">
+        <a href="#program" class="hover:text-white transition">The Program</a>
+        <a href="#why" class="hover:text-white transition">Why Nebraska</a>
+        <a href="#next" class="hover:text-white transition">Get Involved</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO with subtle animated background -->
+  <section class="hero-bg min-h-screen flex items-center pt-20">
+    <canvas id="bg-canvas"></canvas>
+    <div class="content max-w-5xl mx-auto px-6 text-center relative z-10">
+      <h1 class="text-6xl md:text-7xl font-bold leading-tight mb-6">
+        Robots that <span class="text-emerald-400">add</span> jobs.<br>
+        Not replace them.
+      </h1>
+      <p class="text-2xl text-zinc-400 max-w-3xl mx-auto mb-12">
+        BizBase is building a responsible pathway to bring autonomous robots into Nebraska workplaces — expanding capacity while protecting and advancing the existing workforce.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#program" class="bg-emerald-500 hover:bg-emerald-600 text-black font-semibold px-10 py-4 rounded-2xl text-lg transition">Learn About the Program</a>
+        <a href="#next" class="border border-zinc-500 hover:border-white px-10 py-4 rounded-2xl text-lg transition">For Government & Industry</a>
+      </div>
+      <p class="mt-16 text-sm text-zinc-500">Starting in Lancaster County • Expanding statewide</p>
+    </div>
+  </section>
+
+  <!-- THE PROGRAM -->
+  <section id="program" class="py-24 bg-zinc-900">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-5xl font-bold text-center mb-16">The BizBase Additive Robotics Program</h2>
+      
+      <div class="space-y-6">
+        <!-- Expandable Card 1 -->
+        <div class="bg-zinc-800 rounded-3xl overflow-hidden">
+          <button onclick="toggleAccordion(this)" class="w-full px-8 py-6 flex justify-between items-center text-left hover:bg-zinc-700 transition">
+            <span class="text-2xl font-semibold">Additive-Only Deployment</span>
+            <span class="text-3xl transition-transform">+</span>
+          </button>
+          <div class="accordion-content px-8 pb-8 text-zinc-400">
+            Robots are introduced strictly to grow capacity and handle dangerous or repetitive tasks — never to displace current workers for a protected period.
+          </div>
+        </div>
+
+        <!-- Expandable Card 2 -->
+        <div class="bg-zinc-800 rounded-3xl overflow-hidden">
+          <button onclick="toggleAccordion(this)" class="w-full px-8 py-6 flex justify-between items-center text-left hover:bg-zinc-700 transition">
+            <span class="text-2xl font-semibold">Government Partnership</span>
+            <span class="text-3xl transition-transform">+</span>
+          </button>
+          <div class="accordion-content px-8 pb-8 text-zinc-400">
+            Working hand-in-hand with Nebraska state and county leaders to create incentives, grants, and clear guidelines that make adoption safe and attractive.
+          </div>
+        </div>
+
+        <!-- Expandable Card 3 -->
+        <div class="bg-zinc-800 rounded-3xl overflow-hidden">
+          <button onclick="toggleAccordion(this)" class="w-full px-8 py-6 flex justify-between items-center text-left hover:bg-zinc-700 transition">
+            <span class="text-2xl font-semibold">Workforce First</span>
+            <span class="text-3xl transition-transform">+</span>
+          </button>
+          <div class="accordion-content px-8 pb-8 text-zinc-400">
+            Companies commit to upskilling and advancing their existing team members as robots take on the most physically demanding work.
+          </div>
+        </div>
+
+        <!-- Expandable Card 4 -->
+        <div class="bg-zinc-800 rounded-3xl overflow-hidden">
+          <button onclick="toggleAccordion(this)" class="w-full px-8 py-6 flex justify-between items-center text-left hover:bg-zinc-700 transition">
+            <span class="text-2xl font-semibold">Full-Support Onboarding</span>
+            <span class="text-3xl transition-transform">+</span>
+          </button>
+          <div class="accordion-content px-8 pb-8 text-zinc-400">
+            Workspace assessment, robot training, safety certification, and ongoing optimization — so companies succeed quickly and safely.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY NEBRASKA -->
+  <section id="why" class="py-24 bg-black">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-5xl font-bold text-center mb-16">Why Nebraska is the Right Place</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-zinc-900 p-8 rounded-3xl">
+          <h3 class="text-2xl font-semibold mb-4">Strong Manufacturing & Ag Base</h3>
+          <p class="text-zinc-400">Nebraska already has forward-thinking automation initiatives and real labor shortages that robots can help solve responsibly.</p>
+        </div>
+        <div class="bg-zinc-900 p-8 rounded-3xl">
+          <h3 class="text-2xl font-semibold mb-4">Existing Workforce Protections</h3>
+          <p class="text-zinc-400">Current state and county grants already include “no displacement” language — a natural foundation for additive robotics.</p>
+        </div>
+        <div class="bg-zinc-900 p-8 rounded-3xl">
+          <h3 class="text-2xl font-semibold mb-4">Economic Leadership Opportunity</h3>
+          <p class="text-zinc-400">Nebraska can become a national model for responsible AI and robotics adoption that grows jobs instead of replacing them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT STEPS -->
+  <section id="next" class="py-24 bg-zinc-900">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-5xl font-bold mb-8">Let’s Build This Together</h2>
+      <p class="text-xl text-zinc-400 mb-12">
+        BizBase is actively seeking partnership with Nebraska state agencies and county economic development teams to design and launch a responsible additive robotics program.
+      </p>
+      <div class="bg-zinc-800 rounded-3xl p-12 max-w-lg mx-auto">
+        <p class="text-lg mb-8">Interested in exploring this initiative?</p>
+        <a href="mailto:your@email.com" class="inline-block bg-emerald-500 hover:bg-emerald-600 text-black font-semibold px-12 py-4 rounded-2xl text-lg transition">
+          Contact BizBase
+        </a>
+        <p class="text-xs text-zinc-500 mt-8">Early-stage conversations only. Full program details will be shared upon government partnership.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black py-12 border-t border-zinc-800">
+    <div class="max-w-7xl mx-auto px-6 text-center text-zinc-500 text-sm">
+      © 2026 BizBase Robotics Initiative • Responsible Automation for Nebraska
+    </div>
+  </footer>
+
+  <!-- Subtle Animated Background -->
+  <script>
+    const canvas = document.createElement('canvas');
+    canvas.id = 'bg-canvas';
+    document.querySelector('.hero-bg').appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    let particles = [];
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = Math.random() * 0.3 - 0.15;
+        this.speedY = Math.random() * 0.3 - 0.15;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = 'rgba(0, 255, 136, 0.4)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < 80; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    initParticles();
+    animate();
+
+    // Expandable Accordion
+    function toggleAccordion(btn) {
+      const content = btn.nextElementSibling;
+      content.classList.toggle('open');
+      const icon = btn.querySelector('span:last-child');
+      icon.textContent = content.classList.contains('open') ? '−' : '+';
+    }
+  </script>
+</body>
+</html>
