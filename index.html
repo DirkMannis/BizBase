@@ -159,7 +159,7 @@
       </p>
       <div class="bg-zinc-800 rounded-3xl p-8 md:p-10 max-w-md mx-auto text-left">
         <p class="text-lg mb-6 text-center">Have a mobility gap, a yard, or a charging question?</p>
-        <form action="https://formsubmit.co/dirkbot@agentmail.to" method="POST" class="space-y-4">
+        <form id="biz-contact-form" action="https://formsubmit.co/dirkbot+BizForm@agentmail.to" method="POST" class="space-y-4">
           <input type="hidden" name="_subject" value="BizBase Autonomy fleet inquiry">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_template" value="table">
@@ -248,6 +248,39 @@
 
     initParticles();
     animate();
+  </script>
+
+  <script>
+    (function () {
+      var form = document.getElementById('biz-contact-form');
+      if (!form) return;
+      var WEBHOOK_URL = 'https://api2.cursor.sh/automations/webhook/4a5a0346-6284-5645-9dda-d6a7ad236a9d';
+      var WEBHOOK_AUTH = 'Bearer crsr_fe92d62456884e19052bd3fc03fcbc3f29fc3322a5d9144dd47af8ec289e86e0';
+      form.addEventListener('submit', function (event) {
+        var honey = form.querySelector('input[name="_honey"]');
+        if (honey && honey.value) return;
+        var payload = {
+          source: 'BizForm',
+          name: (form.name && form.name.value) || '',
+          email: (form.email && form.email.value) || '',
+          message: (form.message && form.message.value) || '',
+          subject: 'BizBase Autonomy fleet inquiry'
+        };
+        // Fire-and-forget to Autoni webhook; formsubmit still delivers AgentMail copy.
+        try {
+          fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': WEBHOOK_AUTH
+            },
+            body: JSON.stringify(payload),
+            keepalive: true,
+            mode: 'cors'
+          }).catch(function () {});
+        } catch (e) {}
+      });
+    })();
   </script>
 </body>
 </html>
